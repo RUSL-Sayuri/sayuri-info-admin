@@ -19,7 +19,11 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('welcome_message');
+            $this->load->library('GoogleAnalytics');
+            $data = array(
+                'test' => $this->googleanalytics->some_function(),
+            );
+		$this->load->view('welcome_message',$data);
 	}
 }
 
