@@ -5,45 +5,65 @@ if (!defined('BASEPATH'))
 
 class GoogleAnalytics {
 
-    public function some_function() {
+    var $ga_api_applicationName;
+    var $ga_api_clientId;
+    var $ga_api_clientSecret;
+    var $ga_api_redirectUri;
+    var $ga_api_developerKey;
+    var $client;
+
+    public function __construct($params) {
         require_once 'google-api-php-client/src/Google_Client.php';
         require_once 'google-api-php-client/src/contrib/Google_AnalyticsService.php';
+        
+        $this->ga_api_applicationName = $params['applicationName'];
+        $this->ga_api_clientId = $params['clientID'];
+        $this->ga_api_clientSecret = $params['clientSecret'];
+        $this->ga_api_redirectUri = $params['redirectUri'];
+        $this->ga_api_developerKey = $params['developerKey'];
+        
         session_start();
 
-        $client = new Google_Client();
-        $client->setApplicationName('test-Analytics');
+        $this->client = new Google_Client();
 
-// Visit https://console.developers.google.com/ to generate your
-// client id, client secret, and to register your redirect uri.
-        $client->setClientId('666657146859-mlofb35d8n25gso9srnps3dosrdg1ad9.apps.googleusercontent.com');
-        $client->setClientSecret('ilUyJccyZqSU0ZHJla3uw3Rf');
-        $client->setRedirectUri('http://localhost/sayuri-info-admin/index.php');
-        $client->setDeveloperKey('AIzaSyB1qZ_BTiS8MiE2OwKZWi-XbN3eoDo9RZI');
-        $client->setScopes(array('https://www.googleapis.com/auth/analytics.readonly'));
-
-        $client->setUseObjects(true);
-        if (isset($_GET['logout'])) { // logout: destroy token
-            unset($_SESSION['token']);
-            die('Logged out.');
+        $this->client->setApplicationName($this->ga_api_applicationName);
+        $this->client->setClientId($this->ga_api_clientId);
+        $this->client->setClientSecret($this->ga_api_clientSecret);
+        $this->client->setRedirectUri($this->ga_api_redirectUri);
+        $this->client->setDeveloperKey($this->ga_api_developerKey);
+        $this->client->setScopes(array('https://www.googleapis.com/auth/analytics.readonly'));
+        
+         if (isset($_SESSION['token'])) {
+            $this->client->setAccessToken($_SESSION['token']);
         }
+    }
+    
+    
+    public function logout(){
+         unset($_SESSION['token']);
+         die('Logged Out'
+                 . '<br>'
+                 . '<a href="http://localhost/sayuri-info-admin/index.php/welcome/googleAnalytics">Back</a>');
+    }
+    
 
+    public function some_function() {
+        $this->client->setUseObjects(true);
+        
         if (isset($_GET['code'])) {
-            $client->authenticate();
-            $_SESSION['token'] = $client->getAccessToken();
+            $this->client->authenticate();
+            $_SESSION['token'] = $this->client->getAccessToken();
             $redirect = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
             header('Location: ' . filter_var($redirect, FILTER_SANITIZE_URL));
         }
 
-        if (isset($_SESSION['token'])) {
-            $client->setAccessToken($_SESSION['token']);
-        }
-
-        if (!$client->getAccessToken()) {
-            $authUrl = $client->createAuthUrl();
+        
+        if (!$this->client->getAccessToken()) {
+            $authUrl = $this->client->createAuthUrl();
             print "<a class='login' href='$authUrl'>Connect Me!</a>";
         } else {
             // Create analytics service object. See next step below.
-            $analytics = new Google_AnalyticsService($client);
+            $analytics = new Google_AnalyticsService($this->client);
             try {
 
 //                $results = queryCoreReportingApi($analytics);
