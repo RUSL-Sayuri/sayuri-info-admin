@@ -58,6 +58,7 @@ class GoogleAnalytics {
 
 
                 $this->printColumnHeaders($results);
+                echo '<br>';
                 $this->printDataTable($results);
                 echo '<br>';
                 $this->printProfileInformation($results);
@@ -68,7 +69,7 @@ class GoogleAnalytics {
                 $error = $e->getMessage();
             }
         }
-        return "GA";
+        return "GA new branch";
     }
 
     function printColumnHeaders($results) {
