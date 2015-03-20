@@ -10,3 +10,4 @@ $config['ga_api_clientId'] = "666657146859-mlofb35d8n25gso9srnps3dosrdg1ad9.apps
 $config['ga_api_clientSecret'] = "ilUyJccyZqSU0ZHJla3uw3Rf";
 $config['ga_api_redirectUri']="http://localhost/sayuri-info-admin/index.php/welcome/googleAnalytics";
 $config['ga_api_developerKey']="AIzaSyB1qZ_BTiS8MiE2OwKZWi-XbN3eoDo9RZI";
+$config['ga_api_profileId'] = "99650545";
