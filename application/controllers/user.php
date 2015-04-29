@@ -14,27 +14,27 @@ if (!defined('BASEPATH'))
  * @author thejan rajapakshe <coder [dot] clix [at] gmail [dot] com
  */
 class User extends CI_Controller {
-    
-    public function index(){
+
+    public function index() {
         $this->login();
     }
 
     public function login() {
         session_start();
         $this->load->library('session');
-        if ($this->session->userdata('logged_in')==FALSE) {
+        if ($this->session->userdata('logged_in') == FALSE) {
             $this->load->view('login');
-        }  else {
-            $this->load->view('dashboard');    
+        } else {
+            $this->load->view('dashboard');
         }
     }
 
     public function signout() {
-         $this->session->unset_userdata('id');
+        $this->session->unset_userdata('id');
         $this->session->unset_userdata('username');
         $this->session->sess_destroy();
-        $data =array('result'=> 'Successfully signed out');
-        $this->load->view('login',$data);
+        $data = array('result' => 'Successfully signed out');
+        $this->load->view('login', $data);
     }
 
     public function loginCheck() {
@@ -62,7 +62,7 @@ class User extends CI_Controller {
             if ($query->num_rows() > 0) {
                 if ($result[0]->password == $hash_password) {
                     $this->session->set_userdata(array('id' => $result[0]->id, 'username' => $username, 'logged_in' => TRUE));
-                    $this->load->view('dashboard');
+                    redirect('user');
                 } else {
                     $data = array('result' => "Login Failed");
                     $this->load->view('login', $data);

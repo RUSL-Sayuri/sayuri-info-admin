@@ -16,24 +16,26 @@ $this->load->helper(array('form', 'bootstrapForm', 'htmlgenerator'));
                     <label class="alert alert-danger"><?php
                         echo validation_errors();
                         ?></label>
-                        <?php
+                    <?php
                 }
-                
+
                 if (isset($result)) {
                     ?>
                     <label class="alert alert-danger"><?php
                         echo $result
                         ?></label>
-                        <?php
+                    <?php
                 }
-                    echo form_open('user/loginCheck', array('role' => 'form'));
-                    echo form_input_div(array('id' => 'username', 'name' => 'username', 'type' => 'text', 'placeholder' => 'Username', 'class' => 'form-control', 'label' => 'Username'), set_value('username'));
-                    echo form_input_div(array('id' => 'password', 'name' => 'password', 'type' => 'password', 'placeholder' => 'Passsword', 'class' => 'form-control', 'label' => 'Password'), set_value('password'));
-                    echo form_submit(array('id' => 'submit', 'name' => 'submit', 'class' => 'btn btn-success'), 'Sign in');
-                    echo form_close();
-                    ?>
+                echo form_open('user/loginCheck', array('role' => 'form'));
+                echo form_input_div(array('id' => 'username', 'name' => 'username', 'type' => 'text', 'placeholder' => 'Username', 'class' => 'form-control', 'label' => 'Username'), set_value('username'));
+                echo form_input_div(array('id' => 'password', 'name' => 'password', 'type' => 'password', 'placeholder' => 'Passsword', 'class' => 'form-control', 'label' => 'Password'), set_value('password'));
+                echo form_submit(array('id' => 'submit', 'name' => 'submit', 'class' => 'btn btn-success'), 'Sign in');
+                echo form_close();
+                ?>
             </div>
+            
         </div>
+
 
     </div>
 </body>

@@ -151,7 +151,7 @@ $this->load->view("partial/header");
 					<a href="javascript:void(0);" id="show-shortcut">
 						<img src="<?php echo base_url('assests/'); ?>/img/avatars/sunny.png" alt="me" class="online" /> 
 						<span>
-							john.doe 
+							<?php echo $this->session->userdata('username'); ?>
 						</span>
 						<i class="fa fa-angle-down"></i>
 					</a> 
