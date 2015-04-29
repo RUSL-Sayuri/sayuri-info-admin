@@ -1,5 +1,5 @@
 <?php
-$this->load->view("partial\header");
+$this->load->view("partial/header");
 ?>
 	</head>
 	<body class="">
