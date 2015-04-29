@@ -25,7 +25,7 @@ class GoogleAnalytics {
         $this->ga_api_developerKey = $params['developerKey'];
         $this->ga_api_profileId = $params['profileID'];
 
-        session_start();
+        //session_start();
 
         $this->client = new Google_Client();
 

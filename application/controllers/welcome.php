@@ -45,6 +45,7 @@ class Welcome extends CI_Controller {
             'users' => $this->googleanalytics->get_total('users'),
             'sessions' => $this->googleanalytics->get_total('sessions'),
             'browsers' => $this->googleanalytics->get_dimensions('browser','sessions'),
+            'countries' => $this->googleanalytics->get_dimensions('country','sessions'),
             'operatingSystems' => $this->googleanalytics->get_dimensions('operatingSystem','sessions'),
             'profileInfo' => $this->googleanalytics->get_profile_info()
         );

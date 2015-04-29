@@ -25,7 +25,7 @@ class User extends CI_Controller {
         if ($this->session->userdata('logged_in') == FALSE) {
             $this->load->view('login');
         } else {
-            $this->load->view('dashboard');
+            redirect('dashboard');
         }
     }
 
@@ -33,7 +33,7 @@ class User extends CI_Controller {
         $this->session->unset_userdata('id');
         $this->session->unset_userdata('username');
         $this->session->sess_destroy();
-        $data = array('result' => 'Successfully signed out');
+        $data = array('result_success' => 'Successfully signed out');
         $this->load->view('login', $data);
     }
 
@@ -62,7 +62,7 @@ class User extends CI_Controller {
             if ($query->num_rows() > 0) {
                 if ($result[0]->password == $hash_password) {
                     $this->session->set_userdata(array('id' => $result[0]->id, 'username' => $username, 'logged_in' => TRUE));
-                    redirect('user');
+                    redirect('dashboard');
                 } else {
                     $data = array('result' => "Login Failed");
                     $this->load->view('login', $data);
@@ -72,12 +72,6 @@ class User extends CI_Controller {
                 $this->load->view('login', $data);
             }
         }
-    }
-
-    public function test() {
-        session_start();
-        $this->load->library('session');
-        echo $this->session->userdata('username');
     }
 
 }

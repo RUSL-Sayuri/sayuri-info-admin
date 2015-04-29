@@ -26,6 +26,13 @@ $this->load->helper(array('form', 'bootstrapForm', 'htmlgenerator'));
                         ?></label>
                     <?php
                 }
+                if (isset($result_success)) {
+                    ?>
+                    <label class="alert alert-success"><?php
+                        echo $result_success
+                        ?></label>
+                    <?php
+                }
                 echo form_open('user/loginCheck', array('role' => 'form'));
                 echo form_input_div(array('id' => 'username', 'name' => 'username', 'type' => 'text', 'placeholder' => 'Username', 'class' => 'form-control', 'label' => 'Username'), set_value('username'));
                 echo form_input_div(array('id' => 'password', 'name' => 'password', 'type' => 'password', 'placeholder' => 'Passsword', 'class' => 'form-control', 'label' => 'Password'), set_value('password'));
