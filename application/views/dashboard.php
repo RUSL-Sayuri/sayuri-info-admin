@@ -10,7 +10,7 @@ $this->load->view("partial/header");
 			<div id="logo-group">
 
 				<!-- PLACE YOUR LOGO HERE -->
-				<span id="logo"> <img src="<?php echo base_url('assests/'); ?>/img/logo.png" alt="SmartAdmin"> </span>
+                                <span id="logo"> <img src="<?php echo base_url('assests/'); ?>/img/logo.png" alt="SmartAdmin"> <a href="http://localhost/sayuri-info-admin/index.php/user/test">Test</a> </span>
 				<!-- END LOGO PLACEHOLDER -->
 
 				<!-- Note: The activity badge color changes when clicked and resets the number to 0
