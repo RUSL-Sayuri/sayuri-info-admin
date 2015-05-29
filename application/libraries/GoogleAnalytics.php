@@ -51,8 +51,9 @@ class GoogleAnalytics {
 
         $this->access_token_ready = $this->client->getAccessToken();
         if (!$this->access_token_ready) {
-            $authUrl = $this->client->createAuthUrl();
-            print "<a class='login' href='$authUrl'>Connect Me!</a>";
+           $authUrl = $this->client->createAuthUrl();
+           $this->ci = &get_instance();
+           $this->ci->load->view('googleAuth',array('auth'=>$authUrl));
         }
     }
 

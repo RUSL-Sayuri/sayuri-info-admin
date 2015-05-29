@@ -33,7 +33,7 @@ class dashboard extends CI_Controller {
             );
 
             $this->load->library('GoogleAnalytics', $ga_params);
-
+            
             $data = array(
                 'users' => $this->googleanalytics->get_total('users'),
                 'sessions' => $this->googleanalytics->get_total('sessions'),
@@ -43,8 +43,30 @@ class dashboard extends CI_Controller {
                 'profileInfo' => $this->googleanalytics->get_profile_info()
             );
 
-            $this->load->view('dashboard',$data);
+            if($this->googleanalytics->access_token_ready){
+                $this->load->view('dashboard', $data);
+            }
         }
+    }
+
+    public function googleRedirect($authURL) {
+        $this->load->view('googleAuth', array('auth' => $authURL));
+    }
+    
+    public function ga_logout() {
+        $this->config->load('ga_api');
+            $ga_params = array(
+                'applicationName' => $this->config->item('ga_api_applicationName'),
+                'clientID' => $this->config->item('ga_api_clientId'),
+                'clientSecret' => $this->config->item('ga_api_clientSecret'),
+                'redirectUri' => $this->config->item('ga_api_redirectUri'),
+                'developerKey' => $this->config->item('ga_api_developerKey'),
+                'profileID' => $this->config->item('ga_api_profileId')
+            );
+
+            $this->load->library('GoogleAnalytics', $ga_params);
+            $this->googleanalytics->logout();
+            $this->index();
     }
 
 }

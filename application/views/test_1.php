@@ -1,14 +1,1 @@
-<?php
-$this->load->view("partial/header");
-?>
-    </head>
-    <body>
-        <?php
-        echo "Hello";
-        ?>
-        
-        <?php
-        $this->load->view("partial/footer");
-        ?>
-    </body>
-</html>
+<img src="<?php echo site_url('/article/getImage/10'); ?>"/>
