@@ -1361,7 +1361,11 @@ foreach ($countries as $key => $value) {
         $first = FALSE;
     } else {
         $country_ShortCode = array_keys($countries_list, strtoupper($key));
-        echo '"' . $country_ShortCode[0] . '": ' . $value . ', ';
+        echo '"';
+        if(isset($country_ShortCode[0])){
+            echo $country_ShortCode[0];
+        } 
+        echo '": ' . $value . ', ';
     }
 }
 ?>
