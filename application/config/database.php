@@ -45,13 +45,13 @@
 | the active record class
 */
 
-$active_group = 'default';
+$active_group = 'clearDB';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'root';
 $db['default']['password'] = 'root';
-$db['default']['database'] = 'sayuri';
+$db['default']['database'] = 'sayuri_V1';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = 'sayuri_';
 $db['default']['pconnect'] = TRUE;
@@ -64,6 +64,22 @@ $db['default']['swap_pre'] = '';
 $db['default']['autoinit'] = TRUE;
 $db['default']['stricton'] = FALSE;
 
+
+$db['clearDB']['hostname'] = 'ap-cdbr-azure-southeast-a.cloudapp.net:3306';
+$db['clearDB']['username'] = 'bc6b13ab354d24';
+$db['clearDB']['password'] = '72f42f87';
+$db['clearDB']['database'] = 'SayuriClearDBMySQLDatabase';
+$db['clearDB']['dbdriver'] = 'mysql';
+$db['clearDB']['dbprefix'] = 'sayuri_';
+$db['clearDB']['pconnect'] = TRUE;
+$db['clearDB']['db_debug'] = TRUE;
+$db['clearDB']['cache_on'] = FALSE;
+$db['clearDB']['cachedir'] = '';
+$db['clearDB']['char_set'] = 'utf8';
+$db['clearDB']['dbcollat'] = 'utf8_general_ci';
+$db['clearDB']['swap_pre'] = '';
+$db['clearDB']['autoinit'] = TRUE;
+$db['clearDB']['stricton'] = FALSE;
 
 /* End of file database.php */
 /* Location: ./application/config/database.php */
